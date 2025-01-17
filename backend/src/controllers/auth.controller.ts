@@ -79,7 +79,7 @@ export const githubLogin = async (req : Request,res : Response) =>{
      user = await updateUser(user.id,{ verified : true}) 
   
 const userData = encodeURIComponent(JSON.stringify({id:user.id,name:user.name,email:user.email,avatar:user.avatar,token}));
-  res.redirect(`http://localhost:3000/login?user=${userData}`);
+  res.redirect(`https://jazzy-malabi-2a741a.netlify.app/login?user=${userData}`);
 }
 
 export const verifyEmail = async (req : Request, res : Response)   =>  {
