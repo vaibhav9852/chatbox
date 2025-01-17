@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "jest --coverage",
-    "dev": "nodemon ./src/server.ts",
+    "dev": "npm run prisma:generate && nodemon ./src/server.ts",
     "build": "tsc",
     "prisma:generate": "prisma generate --schema=./prisma/schema.prisma",
     "prisma:migrate": "prisma migrate dev --schema=./prisma/schema.prisma",
