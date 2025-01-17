@@ -1,0 +1,52 @@
+
+/*
+  "moduleResolution": "node16",    // or "nodenext" or "bundler"
+    "esModuleInterop": true,         // Ensures compatibility with ES modules
+    "module": "esnext",              // Allows ES module syntax
+    "target": "esnext",              // Use the latest JavaScript features
+    "jsx": "react-jsx",              // Use React 17 JSX transform
+    "skipLibCheck": true             // Skips type checking of declaration files for speed
+*/
+
+
+
+{
+  "compilerOptions": {
+    "types": ["jest","node"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "target": "esnext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  },
+  "include": [
+    "src"
+  ]
+}
+
+// {
+//   "compilerOptions": {
+//     "baseUrl": ".",
+//     "paths": {
+//       "@/*": ["./*"]
+//     }
+//   }
+// }
