@@ -162,7 +162,7 @@ const Login = () =>{
         <button
           className="w-full mt-6 py-2 px-4 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400"
         >
-          <Link to='http://localhost:8000/auth/github'>
+          <Link to='https://chatbox-ul83.onrender.com/auth/github'>
           Log In with GitHub 
           </Link>
         </button>

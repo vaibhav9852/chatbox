@@ -112,7 +112,7 @@ export const verifyEmail = async (req : Request, res : Response)   =>  {
 export const forgotPassword = async (req : Request,res : Response)  :Promise<String|any>   =>{
     let {email} = req.body 
     
-    const FRONTEND_URL = process.env.BASE_URL 
+    const FRONTEND_URL = process.env.FRONTEND_URL
     
      try{
         let user = await findOne({email})
