@@ -1,0 +1,77 @@
+
+
+
+
+
+
+
+
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {  
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(uuid())
+  name      String
+  email     String    @unique
+  password  String
+  avatar    String?
+  verified  Boolean   @default(false)
+  verifyToken String  @default("")
+  resetPasswordToken  String? @default("")
+  resetPasswordExpire   DateTime @default(now())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  messages  Message[] @relation("SentMessages") 
+  received  Message[] @relation("DirectMessages") 
+  groups    GroupMember[]  // Relation to GroupMember model
+  groupsAdmin  Group[]   // Groups where the user is the admin
+}
+
+model Group {
+  id          String    @id @default(uuid())
+  name        String
+  description String?
+  adminId     String
+  admin       User      @relation(fields: [adminId], references: [id])
+  members     GroupMember[]  // Relation to GroupMember model
+  messages    Message[] // Messages sent in the group
+  status      Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Message {
+  id          String   @id @default(uuid())
+  content     String?
+  fileUrl     String?
+  fileType    String?
+  senderId    String
+  sender      User     @relation("SentMessages", fields: [senderId], references: [id])
+  recipientId String?
+  recipient   User?    @relation("DirectMessages", fields: [recipientId], references: [id])
+  groupId     String? // Optional group ID for group messages
+  group       Group?   @relation(fields: [groupId], references: [id])
+  createdAt   DateTime @default(now())
+}
+
+model GroupMember {
+  id        String   @id @default(uuid())
+  userId    String
+  groupId   String
+  user      User     @relation(fields: [userId], references: [id])
+  group     Group    @relation(fields: [groupId], references: [id],onDelete: Cascade)
+  active    Boolean  @default(true) // Indicates if the user is actively part of the group
+  exitedAt  DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
